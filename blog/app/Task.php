@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model {
@@ -13,14 +14,20 @@ class Task extends Model {
      */
     protected $fillable = ['name'];
 
-    
-    
     /**
-   * Получить пользователя - владельца данной задачи
-   */
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+    ];
+
+    /**
+     * Получить пользователя - владельца данной задачи
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
 }
